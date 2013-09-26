@@ -84,7 +84,7 @@ chmod 0600 "$key_file_name"
 heroku keys:add "/home/ubuntu/key/$key_file_name.pub"
 debug "added ssh key $key_file_name.pub to heroku"
 
-echo "ssh -t -t -e none -i \"/home/ubuntu/key/$key_file_name\" -o \"StrictHostKeyChecking no\" \$@" > gitssh
+echo "ssh -e none -i \"/home/ubuntu/key/$key_file_name\" -o \"StrictHostKeyChecking no\" \$@" > gitssh
 chmod 0700 /home/ubuntu/key/gitssh
 export GIT_SSH=/home/ubuntu/key/gitssh
 cd $WERCKER_HEROKU_DEPLOY_SOURCE_DIR || fail "could not change directory to source_dir \"$WERCKER_HEROKU_DEPLOY_SOURCE_DIR\""
