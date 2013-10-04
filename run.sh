@@ -71,7 +71,7 @@ mkdir -p key
 chmod 0700 ./key
 cd key
 
-if [ -z "$WERCKER_HEROKU_KEY_NAME" ]
+if [ ! -z "$WERCKER_HEROKU_KEY_NAME" ]
 then
     key_file_name="$WERCKER_HEROKU_KEY_NAME"
     privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
