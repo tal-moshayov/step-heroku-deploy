@@ -75,8 +75,8 @@ if [ ! -n "$WERCKER_HEROKU_KEY_NAME" ]
 then
     debug "will use specified key in key-name option"
 
-    key_file_name="$WERCKER_HEROKU_KEY_NAME"
-    privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
+    export key_file_name="$WERCKER_HEROKU_KEY_NAME"
+    export privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
 
     debug "Writing key file to $key_file_name"
     echo -e "$privateKey" > $key_file_name
@@ -86,8 +86,8 @@ else
 
     #Generate random key to prevent naming collision
     # This key will only be used for this deployment
-    key_file_name="deploy-$RANDOM"
-    key_name="$key_file_name@wercker.com"
+    export key_file_name="deploy-$RANDOM"
+    export key_name="$key_file_name@wercker.com"
     debug 'generating random ssh key for this deploy'
     ssh-keygen -f "$key_file_name" -C "$key_name" -N '' -t rsa -q
     debug "generated ssh key $key_name for this deployment"
