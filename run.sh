@@ -71,14 +71,19 @@ mkdir -p key
 chmod 0700 ./key
 cd key
 
-if [ ! -z "$WERCKER_HEROKU_KEY_NAME" ]
+if [ ! -n "$WERCKER_HEROKU_KEY_NAME" ]
 then
+    debug "will use specified key in key-name option"
+
     key_file_name="$WERCKER_HEROKU_KEY_NAME"
     privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
 
+    debug "Writing key file to $key_file_name"
     echo -e "$privateKey" > $key_file_name
     chmod 0600 "$key_file_name"
 else
+    debug "no key-name specified, will generate key and add it to heroku"
+
     #Generate random key to prevent naming collision
     # This key will only be used for this deployment
     key_file_name="deploy-$RANDOM"
