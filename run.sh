@@ -42,17 +42,17 @@ fi
 # Install heroku toolbelt if needed
 if ! type heroku &> /dev/null ;
 then
-     info 'heroku toolbelt not found, starting installing it'
+    info 'heroku toolbelt not found, starting installing it'
 
-     cd $TMPDIR
-     result=$(sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh)
+    cd $TMPDIR
+    result=$(sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh)
 
-     if [[ $? -ne 0 ]];then
-         warning $result
-         fail 'heroku toolbelt installation failed';
-     else
-         info 'finished heroku toolbelt installation';
-     fi
+    if [[ $? -ne 0 ]];then
+        warning $result
+        fail 'heroku toolbelt installation failed';
+    else
+        info 'finished heroku toolbelt installation';
+    fi
 else
     info 'heroku toolbelt is available, and will not be installed by this step'
     debug "type heroku: $(type heroku)"
@@ -71,18 +71,27 @@ mkdir -p key
 chmod 0700 ./key
 cd key
 
-# Generate random key to prevent naming collision
-# This key will only be used for this deployment
-key_file_name="deploy-$RANDOM"
-key_name="$key_file_name@wercker.com"
-debug 'generating random ssh key for this deploy'
-ssh-keygen -f "$key_file_name" -C "$key_name" -N '' -t rsa -q
-debug "generated ssh key $key_name for this deployment"
-chmod 0600 "$key_file_name"
+if [ -z "$WERCKER_HEROKU_KEY_NAME" ]
+then
+    key_file_name="$WERCKER_HEROKU_KEY_NAME"
+    privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
 
-# Add key to heroku
-heroku keys:add "/home/ubuntu/key/$key_file_name.pub"
-debug "added ssh key $key_file_name.pub to heroku"
+    echo -e "$privateKey" > $key_file_name
+    chmod 0600 "$key_file_name"
+else
+    #Generate random key to prevent naming collision
+    # This key will only be used for this deployment
+    key_file_name="deploy-$RANDOM"
+    key_name="$key_file_name@wercker.com"
+    debug 'generating random ssh key for this deploy'
+    ssh-keygen -f "$key_file_name" -C "$key_name" -N '' -t rsa -q
+    debug "generated ssh key $key_name for this deployment"
+    chmod 0600 "$key_file_name"
+
+    # Add key to heroku
+    heroku keys:add "/home/ubuntu/key/$key_file_name.pub"
+    debug "added ssh key $key_file_name.pub to heroku"
+fi
 
 echo "ssh -e none -i \"/home/ubuntu/key/$key_file_name\" -o \"StrictHostKeyChecking no\" \$@" > gitssh
 chmod 0700 /home/ubuntu/key/gitssh
