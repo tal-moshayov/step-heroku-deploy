@@ -73,7 +73,7 @@ cd key
 
 if [ ! -n "$WERCKER_HEROKU_KEY_NAME" ]
 then
-    debug "will use specified key in key-name option"
+    debug "will use specified key in key-name option: $WERCKER_HEROKU_KEY_NAME"
 
     export key_file_name="$WERCKER_HEROKU_KEY_NAME"
     export privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
