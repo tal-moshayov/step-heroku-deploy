@@ -71,7 +71,7 @@ mkdir -p key
 chmod 0700 ./key
 cd key
 
-if [ ! -n "$WERCKER_HEROKU_KEY_NAME" ]
+if [ -n "$WERCKER_HEROKU_KEY_NAME" ]
 then
     debug "will use specified key in key-name option: $WERCKER_HEROKU_KEY_NAME"
 
