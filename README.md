@@ -18,7 +18,7 @@ You can optionally use a wercker ssh key (using `key-name`), which is highly rec
 ``` yaml
 - heroku-deploy:
     - key-name: MY_DEPLOY_KEY
-````
+```
 
 # License
 
