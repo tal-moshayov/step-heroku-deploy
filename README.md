@@ -2,6 +2,10 @@
 
 The step assumes you have a heroku deployment target configured in wercker.
 
+## What is new?
+
+* Added validation to `key-name` option 
+
 # Options
 
 ## key-name
@@ -19,5 +23,6 @@ The step assumes you have a heroku deployment target configured in wercker.
 
 # History
 
+* `0.0.4` - Added validation to `key-name` option.
 * `0.0.3` - Added `key-name` option.
 * `0.0.2` - Initial release
