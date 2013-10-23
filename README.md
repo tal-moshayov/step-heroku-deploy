@@ -1,18 +1,17 @@
 # Heroku deployment step
 
-The step assumes you have a heroku deployment target configured in wercker.
+Deploy your code to Heroku. This step requires that you deploy to a Heroku deploy target. 
 
-## What is new?
+You can optionally use a wercker ssh key (using `key-name`), which is highly recommended.
 
-* Fix wrong option check.
+# What's new
+
+* Only call `heroku keys:remove` if a ephemeral key was used (wercker/step-heroku-deploy#2).
+* Update README.
 
 # Options
 
-## key-name
-
-* type: string
-* optional: true (default: `empty`, which means this step will generate a new key and adds it to heroku via the api.)
-* description: specify the name of the key that should be used for this deployment.
+* `key-name` (optional) Specify the name of the key that should be used for this deployment. If left empty, a temporary key will be created for the deployment.
 
 # Example
 
@@ -21,9 +20,29 @@ The step assumes you have a heroku deployment target configured in wercker.
     - key-name: MY_DEPLOY_KEY
 ````
 
-# History
+# License
 
-* `0.0.6` - Fix wrong option check.
-* `0.0.4` - Added validation to `key-name` option.
-* `0.0.3` - Added `key-name` option.
-* `0.0.2` - Initial release
+The MIT License (MIT)
+
+# Changelog
+
+## 0.0.7
+
+* Only call `heroku keys:remove` if a ephemeral key was used (wercker/step-heroku-deploy#2).
+* Update README.
+
+## 0.0.6
+
+* Fix wrong option check.
+
+## 0.0.4
+
+* Added validation to `key-name` option.
+
+## 0.0.3
+
+* Added `key-name` option.
+
+## 0.0.2
+
+* Initial release.
