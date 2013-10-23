@@ -78,6 +78,11 @@ then
     export key_file_name="$WERCKER_HEROKU_KEY_NAME"
     export privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
 
+    if [ -n "$WERCKER_HEROKU_KEY_NAME" ]
+    then
+        fail 'Missing key error. The key-name is specified, but no key with this name could be found. Make sure you generated an key, *and* exported it as an environment variable.'
+    fi
+
     debug "Writing key file to $key_file_name"
     echo -e "$privateKey" > $key_file_name
     chmod 0600 "$key_file_name"
