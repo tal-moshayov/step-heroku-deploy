@@ -133,8 +133,11 @@ exit_code=$?
 debug "git pushed exited with $exit_code"
 
 # Cleanup ssh key
-heroku keys:remove "$key_name"
-debug "removed ssh key $key_name from heroku"
+ if [ ! -n "$WERCKER_HEROKU_DEPLOY_KEY_NAME" ]
+then
+    heroku keys:remove "$key_name"
+    debug "removed ssh key $key_name from heroku"
+fi
 
 # Validate git push deploy
 if [ $exit_code -eq 0 ]
