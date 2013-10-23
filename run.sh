@@ -78,7 +78,7 @@ then
     export key_file_name="$WERCKER_HEROKU_DEPLOY_KEY_NAME"
     export privateKey=$(eval echo "\$${WERCKER_HEROKU_DEPLOY_KEY_NAME}_PRIVATE")
 
-    if [ -n "$privateKey" ]
+    if [ ! -n "$privateKey" ]
     then
         fail 'Missing key error. The key-name is specified, but no key with this name could be found. Make sure you generated an key, *and* exported it as an environment variable.'
     fi
