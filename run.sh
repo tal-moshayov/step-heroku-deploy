@@ -71,14 +71,14 @@ mkdir -p key
 chmod 0700 ./key
 cd key
 
-if [ -n "$WERCKER_HEROKU_KEY_NAME" ]
+if [ -n "$WERCKER_HEROKU_DEPLOY_KEY_NAME" ]
 then
-    debug "will use specified key in key-name option: $WERCKER_HEROKU_KEY_NAME"
+    debug "will use specified key in key-name option: $WERCKER_HEROKU_DEPLOY_KEY_NAME"
 
-    export key_file_name="$WERCKER_HEROKU_KEY_NAME"
-    export privateKey=$(eval echo "\$${WERCKER_HEROKU_KEY_NAME}_PRIVATE")
+    export key_file_name="$WERCKER_HEROKU_DEPLOY_KEY_NAME"
+    export privateKey=$(eval echo "\$${WERCKER_HEROKU_DEPLOY_KEY_NAME}_PRIVATE")
 
-    if [ -n "$WERCKER_HEROKU_KEY_NAME" ]
+    if [ -n "$privateKey" ]
     then
         fail 'Missing key error. The key-name is specified, but no key with this name could be found. Make sure you generated an key, *and* exported it as an environment variable.'
     fi
