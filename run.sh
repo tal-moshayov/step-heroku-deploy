@@ -126,6 +126,7 @@ git add .
 git commit -m 'wercker deploy'
 
 # Deploy with a git push
+set +e
 debug "starting heroku deployment with git push"
 git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
 exit_code=$?
@@ -146,3 +147,5 @@ then
 else
     fail 'git push to heroku failed'
 fi
+
+
