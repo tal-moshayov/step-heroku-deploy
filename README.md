@@ -12,6 +12,7 @@ You can optionally use a wercker ssh key (using `key-name`), which is highly rec
 # Options
 
 * `key-name` (optional) Specify the name of the key that should be used for this deployment. If left empty, a temporary key will be created for the deployment.
+* `retry` (optional) When a deploy to Heroku fails, a new deploy is automatically performed after 5 seconds. If you want to disable this behavior, set `retry` to `false`.
 
 # Example
 
@@ -25,6 +26,10 @@ You can optionally use a wercker ssh key (using `key-name`), which is highly rec
 The MIT License (MIT)
 
 # Changelog
+
+## 0.0.8
+
+* Retry on failure.
 
 ## 0.0.7
 
