@@ -138,7 +138,8 @@ then
     if [ "$WERCKER_HEROKU_DEPLOY_RETRY" == "false" ]; then
     	warn "don't retry deployment"
     else
-        info "retry heroku deployment with git push"
+        info "retry heroku deployment with git push after 5 seconds"
+        sleep 5
     
         git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
         exit_code=$?
