@@ -133,6 +133,20 @@ exit_code=$?
 
 debug "git pushed exited with $exit_code"
 
+if [ $exit_code -ne 0 ]
+then
+    if [ "$WERCKER_HEROKU_DEPLOY_RETRY" == "false" ]; then
+    	warn "don't retry deployment"
+    else
+        info "retry heroku deployment with git push"
+    
+        git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
+        exit_code=$?
+        
+        debug "git push retry exited with $exit_code"
+    fi
+fi
+
 # Cleanup ssh key
 if [ ! -n "$WERCKER_HEROKU_DEPLOY_KEY_NAME" ]
 then
