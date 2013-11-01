@@ -1,5 +1,7 @@
 # Suffix for missing options.
 error_suffix='Please add this option to the wercker.yml or add a heroku deployment target on the website which will set these options for you.'
+exit_code_push=0
+exit_code_run=0
 
 if [ -z "$WERCKER_HEROKU_DEPLOY_KEY"  ]
 then
@@ -129,11 +131,11 @@ git commit -m 'wercker deploy'
 set +e
 debug "starting heroku deployment with git push"
 git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
-exit_code=$?
+exit_code_push=$?
 
-debug "git pushed exited with $exit_code"
+debug "git pushed exited with $exit_code_push"
 
-if [ $exit_code -ne 0 ]
+if [ $exit_code_push -ne 0 ]
 then
     if [ "$WERCKER_HEROKU_DEPLOY_RETRY" == "false" ]; then
     	warn "don't retry deployment"
@@ -142,10 +144,20 @@ then
         sleep 5
     
         git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
-        exit_code=$?
+        exit_code_run=$?
         
-        debug "git push retry exited with $exit_code"
+        debug "git push retry exited with $exit_code_push
+    "
     fi
+fi
+
+if [ ! -n "$WERCKER_HEROKU_DEPLOY_RUN" ]
+then
+    run_command="$WERCKER_HEROKU_DEPLOY_RUN"
+
+    debug "starting heroku run $run_command"
+    heroku run "$run_command"
+    exit_code=$?
 fi
 
 # Cleanup ssh key
@@ -155,12 +167,16 @@ then
     debug "removed ssh key $key_name from heroku"
 fi
 
+# Validate git run
+if [ $exit_code_push -neq 0 ]
+then
+    fail 'heroku run failed'
+fi
+
 # Validate git push deploy
-if [ $exit_code -eq 0 ]
+if [ $exit_code_push -eq 0 ]
 then
     success 'deployment to heroku finished successfully'
 else
     fail 'git push to heroku failed'
 fi
-
-
