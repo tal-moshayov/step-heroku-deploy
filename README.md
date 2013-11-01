@@ -6,13 +6,14 @@ You can optionally use a wercker ssh key (using `key-name`), which is highly rec
 
 # What's new
 
-* Only call `heroku keys:remove` if a ephemeral key was used (wercker/step-heroku-deploy#2).
+* Adds `run` option.
 * Update README.
 
 # Options
 
 * `key-name` (optional) Specify the name of the key that should be used for this deployment. If left empty, a temporary key will be created for the deployment.
 * `retry` (optional) When a deploy to Heroku fails, a new deploy is automatically performed after 5 seconds. If you want to disable this behavior, set `retry` to `false`.
+* `run` (optional) Run a command on heroku after the code is deployed succesfully. This option can be used to migrate the database for example.
 
 # Example
 
@@ -26,6 +27,10 @@ You can optionally use a wercker ssh key (using `key-name`), which is highly rec
 The MIT License (MIT)
 
 # Changelog
+
+## 0.0.9
+
+* Adds `run` option.
 
 ## 0.0.8
 
