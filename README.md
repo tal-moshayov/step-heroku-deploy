@@ -28,7 +28,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 0.0.9
+## 0.0.9-dev
 
 * Adds `run` option.
 
