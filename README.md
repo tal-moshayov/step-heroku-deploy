@@ -28,6 +28,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 1.0.0
+
+* Bug fixes
+
 ## 0.0.9-dev
 
 * Adds `run` option.
