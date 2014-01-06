@@ -144,7 +144,7 @@ then
         sleep 5
     
         git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
-        exit_code_run=$?
+        exit_code_push=$?
         
         debug "git push retry exited with $exit_code_push
     "
@@ -157,7 +157,7 @@ then
 
     debug "starting heroku run $run_command"
     heroku run "$run_command"
-    exit_code=$?
+    exit_code_run=$?
 fi
 
 # Cleanup ssh key
@@ -168,7 +168,7 @@ then
 fi
 
 # Validate git run
-if [ $exit_code_push -neq 0 ]
+if [ $exit_code_run -neq 0 ]
 then
     fail 'heroku run failed'
 fi
