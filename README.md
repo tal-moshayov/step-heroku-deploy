@@ -28,8 +28,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 1.0.2
+* correct release
 ## 1.0.1
-* fix for apt-get bug: deb files are now included
+* fix for apt-get bug: deb files are now included [broken]
 
 ## 1.0.0
 

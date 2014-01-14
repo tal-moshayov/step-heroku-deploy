@@ -48,7 +48,7 @@ then
 
     cd $TMPDIR
     # result=$(sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh)
-    result=$(sudo dpkg-i $WERCKER_STEP_DIR/foreman-0.60.0.deb $WERCKER_STEP_DIR/heroku-3.2.0.deb $WERCKER_STEP_DIR/heroku-toolbelt-3.2.0.deb)
+    result=$(sudo dpkg -i $WERCKER_STEP_DIR/foreman-0.60.0.deb $WERCKER_STEP_DIR/heroku-3.2.0.deb $WERCKER_STEP_DIR/heroku-toolbelt-3.2.0.deb)
 
     if [[ $? -ne 0 ]];then
         warning $result
