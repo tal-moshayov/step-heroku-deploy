@@ -49,9 +49,9 @@ then
     cd $TMPDIR
     # result=$(sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh)
 
-    result=$(sudo gdebi $WERCKER_STEP_ROOT/foreman-0.60.0.deb $WERCKER_STEP_ROOT/heroku-3.2.0.deb $WERCKER_STEP_ROOT/heroku-toolbelt-3.2.0.deb)
+    result=$(sudo dpkg -i $WERCKER_STEP_ROOT/foreman-0.60.0.deb $WERCKER_STEP_ROOT/heroku-3.2.0.deb $WERCKER_STEP_ROOT/heroku-toolbelt-3.2.0.deb)
     sudo apt-get install -f install
-    result=$(sudo gdebi $WERCKER_STEP_ROOT/foreman-0.60.0.deb $WERCKER_STEP_ROOT/heroku-3.2.0.deb $WERCKER_STEP_ROOT/heroku-toolbelt-3.2.0.deb)
+    result=$(sudo dpkg -i $WERCKER_STEP_ROOT/foreman-0.60.0.deb $WERCKER_STEP_ROOT/heroku-3.2.0.deb $WERCKER_STEP_ROOT/heroku-toolbelt-3.2.0.deb)
 
     if [[ $? -ne 0 ]];then
         warning $result
