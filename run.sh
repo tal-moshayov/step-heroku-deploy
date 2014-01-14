@@ -48,7 +48,7 @@ then
 
     cd $TMPDIR
     # result=$(sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh)
-    result=$(sudo dpkg -i $WERCKER_STEP_DIR/foreman-0.60.0.deb $WERCKER_STEP_DIR/heroku-3.2.0.deb $WERCKER_STEP_DIR/heroku-toolbelt-3.2.0.deb)
+    result=$(sudo dpkg -i $WERCKER_STEP_ROOT/foreman-0.60.0.deb $WERCKER_STEP_ROOT/heroku-3.2.0.deb $WERCKER_STEP_ROOT/heroku-toolbelt-3.2.0.deb)
 
     if [[ $? -ne 0 ]];then
         warning $result
@@ -143,10 +143,10 @@ then
     else
         info "retry heroku deployment with git push after 5 seconds"
         sleep 5
-    
+
         git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
         exit_code_push=$?
-        
+
         debug "git push retry exited with $exit_code_push
     "
     fi
