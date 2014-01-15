@@ -29,8 +29,11 @@ The MIT License (MIT)
 # Changelog
 
 ## 1.0.4
+
 * fixed release that also works on ruby based boxes (always installs ruby 1.9.1)
+
 ## 1.0.1
+
 * fix for apt-get bug: deb files are now included [broken]
 
 ## 1.0.0
