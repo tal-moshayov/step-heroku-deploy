@@ -4,13 +4,13 @@ Deploy your code to Heroku. This step requires that you deploy to a Heroku deplo
 
 # Using wercker SSH key pair
 
-To push to Heroku we need to have a ssh key. We can dynamically generate a key, add the key to your repository and then remove it, during each build. But this results in a e-mail from Heroku on each deploy. 
+To push to Heroku we need to have an ssh key. We can dynamically generate a key, add the key to your repository and then remove it, during each build. But this results in an e-mail from Heroku on each deploy. 
 
 To prevent this you can generate a private/public key pair on wercker and manually add the public key to Heroku.
 
 - Generate a new key in wercker in the `Key management` section (`application` - `settings`).
-- Copy the public key and add it in Heroku to the `SSH Keys section` section (`account`).
-- In wercker edit the Heroku deploy target to which you would like to deploy and add a environment variable:
+- Copy the public key and add it on Heroku to the `SSH Keys section` section (`account`).
+- In wercker edit the Heroku deploy target to which you would like to deploy, and add an environment variable:
     - Give the environment variable a name (remember this name, you will need it in the last step).
     - Select `SSH Key pair` as the type and select the key pair which you created earlier.
 - In the `heroku-deploy` step in your `wercker.yml` add the `key-name` property with the value you used earlier:
