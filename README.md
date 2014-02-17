@@ -26,7 +26,7 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-* Update README, to clearify using a SSH Key pair.
+* Fix bugs related to the `run` parameter.
 
 # Options
 
@@ -48,6 +48,10 @@ deploy:
 The MIT License (MIT)
 
 # Changelog
+
+## 1.0.6
+
+* Fix bugs related to the `run` parameter.
 
 ## 1.0.5
 
