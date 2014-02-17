@@ -150,12 +150,11 @@ then
         git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
         exit_code_push=$?
 
-        debug "git push retry exited with $exit_code_push
-    "
+        debug "git push retry exited with $exit_code_push"
     fi
 fi
 
-if [ ! -n "$WERCKER_HEROKU_DEPLOY_RUN" ]
+if [ -n "$WERCKER_HEROKU_DEPLOY_RUN" ]
 then
     run_command="$WERCKER_HEROKU_DEPLOY_RUN"
 
@@ -165,14 +164,14 @@ then
 fi
 
 # Cleanup ssh key
-if [ ! -n "$WERCKER_HEROKU_DEPLOY_KEY_NAME" ]
+if [ -z "$WERCKER_HEROKU_DEPLOY_KEY_NAME" ]
 then
     heroku keys:remove "$key_name"
     debug "removed ssh key $key_name from heroku"
 fi
 
 # Validate git run
-if [ $exit_code_run -neq 0 ]
+if [ $exit_code_run -ne 0 ]
 then
     fail 'heroku run failed'
 fi
