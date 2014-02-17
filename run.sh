@@ -159,7 +159,7 @@ then
     run_command="$WERCKER_HEROKU_DEPLOY_RUN"
 
     debug "starting heroku run $run_command"
-    heroku run "$run_command"
+    heroku run "$run_command" --app $HEROKU_APP_NAME
     exit_code_run=$?
 fi
 
