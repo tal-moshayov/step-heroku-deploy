@@ -49,7 +49,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.0.6
+## 1.0.7
 
 * Fix bugs related to the `run` parameter.
 
