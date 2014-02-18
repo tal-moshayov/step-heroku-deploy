@@ -26,7 +26,7 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-* Fix bugs related to the `run` parameter.
+- Make sure git-core is installed when heroku toolbelt.
 
 # Options
 
@@ -48,6 +48,10 @@ deploy:
 The MIT License (MIT)
 
 # Changelog
+
+## 1.0.8
+
+- Make sure git-core is installed when heroku toolbelt.
 
 ## 1.0.7
 
