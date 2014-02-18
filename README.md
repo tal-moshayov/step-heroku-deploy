@@ -49,7 +49,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.0.8
+## 1.0.9
 
 - Make sure git-core is installed when heroku toolbelt.
 
