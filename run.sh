@@ -123,6 +123,15 @@ then
     debug "found git repository in $(pwd)"
     warn "Removing git repository from $WERCKER_ROOT"
     rm -rf '.git'
+    #submodules found are 
+    if [ -f '.gitmodules']
+    then 
+        debug "found possible git submodule(s) usage"
+        while IFS= read -r -d '' file
+        do
+            rm -f "$file" && warn "Removed submodule $file"
+        done < <(find "$WERCKER_HEROKU_DEPLOY_SOURCE_DIR" -type f -name ".git" -print0)
+    fi
 fi
 
 # Create git repository and add all files.
