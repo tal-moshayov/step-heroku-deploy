@@ -123,7 +123,7 @@ then
     debug "found git repository in $(pwd)"
     warn "Removing git repository from $WERCKER_ROOT"
     rm -rf '.git'
-    #submodules found are 
+    #submodules found are flattened
     if [ -f '.gitmodules']
     then 
         debug "found possible git submodule(s) usage"

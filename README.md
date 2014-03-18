@@ -49,6 +49,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 1.0.10
+
+- Fix pushing submodules to heroku by flattening submodules if found.
+
 ## 1.0.9
 
 - Make sure git-core is installed when heroku toolbelt.
