@@ -1,10 +1,10 @@
 # Heroku deployment step
 
-Deploy your code to Heroku. This step requires that you deploy to a Heroku deploy target. 
+Deploy your code to Heroku. This step requires that you deploy to a Heroku deploy target.
 
 # Using wercker SSH key pair
 
-To push to Heroku we need to have an ssh key. We can dynamically generate a key, add the key to your repository and then remove it, during each build. But this results in an e-mail from Heroku on each deploy. 
+To push to Heroku we need to have an ssh key. We can dynamically generate a key, add the key to your repository and then remove it, during each build. But this results in an e-mail from Heroku on each deploy.
 
 To prevent this you can generate a private/public key pair on wercker and manually add the public key to Heroku.
 
@@ -26,7 +26,7 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-- Make sure git-core is installed when heroku toolbelt.
+- Fix pushing submodules to heroku by flattening submodules if found.
 
 # Options
 
@@ -49,7 +49,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.0.10
+## 1.0.11
 
 - Fix pushing submodules to heroku by flattening submodules if found.
 
