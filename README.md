@@ -49,6 +49,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 1.0.12
+
+- Add optional `keep-repository` parameter. This will allow a user to keep the original history of the repository, speeding up deployment. Note that changes not commited to history will not be deployed. Also keep in mind that deploying an already up to date repo will not result in an application restart. Use the `run` parameter to forcibly reload to achieve this.
+
 ## 1.0.11
 
 - Fix pushing submodules to heroku by flattening submodules if found.
