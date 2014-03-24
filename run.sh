@@ -124,8 +124,8 @@ then
     warn "Removing git repository from $WERCKER_ROOT"
     rm -rf '.git'
     #submodules found are flattened
-    if [ -f '.gitmodules']
-    then 
+    if [ -f '.gitmodules' ]
+    then
         debug "found possible git submodule(s) usage"
         while IFS= read -r -d '' file
         do
