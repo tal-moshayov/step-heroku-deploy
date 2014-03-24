@@ -115,30 +115,42 @@ export GIT_SSH=/home/ubuntu/key/gitssh
 cd $WERCKER_HEROKU_DEPLOY_SOURCE_DIR || fail "could not change directory to source_dir \"$WERCKER_HEROKU_DEPLOY_SOURCE_DIR\""
 heroku version
 
-# If there is a git repository, remove it because
-# we want to create a new git repository to push
-# to heroku.
-if [ -d '.git' ]
+#if true, we keep the repository in its state.
+if [ "$WERCKER_HEROKU_DEPLOY_KEEP_REPOSITORY" == "true" ]
 then
-    debug "found git repository in $(pwd)"
-    warn "Removing git repository from $WERCKER_ROOT"
-    rm -rf '.git'
-    #submodules found are flattened
-    if [ -f '.gitmodules' ]
+    debug "keeping git repository"
+    if [ -d '.git' ]
     then
-        debug "found possible git submodule(s) usage"
-        while IFS= read -r -d '' file
-        do
-            rm -f "$file" && warn "Removed submodule $file"
-        done < <(find "$WERCKER_HEROKU_DEPLOY_SOURCE_DIR" -type f -name ".git" -print0)
+        debug "found git repository in $(pwd)"
+    else 
+        fail "no git repository found to push"
     fi
+else
+    # If there is a git repository, remove it because
+    # we want to create a new git repository to push
+    # to heroku.
+    if [ -d '.git' ]
+    then
+        debug "found git repository in $(pwd)"
+        warn "Removing git repository from $WERCKER_ROOT"
+        rm -rf '.git'
+        #submodules found are flattened
+        if [ -f '.gitmodules' ]
+        then
+            debug "found possible git submodule(s) usage"
+            while IFS= read -r -d '' file
+            do
+                rm -f "$file" && warn "Removed submodule $file"
+            done < <(find "$WERCKER_HEROKU_DEPLOY_SOURCE_DIR" -type f -name ".git" -print0)
+        fi
+    fi
+    
+    # Create git repository and add all files.
+    # This repository will get pushed to heroku.
+    git init
+    git add .
+    git commit -m 'wercker deploy'
 fi
-
-# Create git repository and add all files.
-# This repository will get pushed to heroku.
-git init
-git add .
-git commit -m 'wercker deploy'
 
 # Deploy with a git push
 set +e
