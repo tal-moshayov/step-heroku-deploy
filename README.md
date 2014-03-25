@@ -26,13 +26,14 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-- Fix pushing submodules to heroku by flattening submodules if found.
+- Add `keep-repository` parameter.
 
 # Options
 
 * `key-name` (optional) Specify the name of the key that should be used for this deployment. If left empty, a temporary key will be created for the deployment.
 * `retry` (optional) When a deploy to Heroku fails, a new deploy is automatically performed after 5 seconds. If you want to disable this behavior, set `retry` to `false`.
 * `run` (optional) Run a command on heroku after the code is deployed succesfully. This option can be used to migrate the database for example.
+* `keep-repository` (optional) This will allow a user to keep the original history of the repository, speeding up deployment. **Important:** changes made during the build will not be deployed. Also keep in mind that deploying an already up to date repo will not result in an application restart. Use the `run` parameter to forcibly reload to achieve this.
 
 # Example
 
@@ -43,6 +44,10 @@ deploy:
             key-name: MY_DEPLOY_KEY
 ```
 
+# Special thanks
+
+[https://app.wercker.com/#wernerb](wernerb) for fixing submodule support and allowing the repository to be reused.
+
 # License
 
 The MIT License (MIT)
@@ -51,7 +56,7 @@ The MIT License (MIT)
 
 ## 1.0.12
 
-- Add optional `keep-repository` parameter. This will allow a user to keep the original history of the repository, speeding up deployment. Note that changes not commited to history will not be deployed. Also keep in mind that deploying an already up to date repo will not result in an application restart. Use the `run` parameter to forcibly reload to achieve this.
+- Add `keep-repository` parameter.
 
 ## 1.0.11
 
