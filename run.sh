@@ -155,7 +155,7 @@ fi
 # Deploy with a git push
 set +e
 debug "starting heroku deployment with git push"
-git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
+git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git HEAD:master
 exit_code_push=$?
 
 debug "git pushed exited with $exit_code_push"
@@ -168,7 +168,7 @@ then
         info "retry heroku deployment with git push after 5 seconds"
         sleep 5
 
-        git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git master
+        git push -f git@heroku.com:$WERCKER_HEROKU_DEPLOY_APP_NAME.git HEAD:master
         exit_code_push=$?
 
         debug "git push retry exited with $exit_code_push"
