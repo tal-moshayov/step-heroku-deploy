@@ -54,7 +54,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.0.13
+## 1.0.14
 
 - Add `keep-repository` parameter.
 
