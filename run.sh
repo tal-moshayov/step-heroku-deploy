@@ -119,12 +119,13 @@ heroku version
 if [ "$WERCKER_HEROKU_DEPLOY_KEEP_REPOSITORY" == "true" ]
 then
     debug "keeping git repository"
-    if [ -d '.git' ]
-    then
+    if [ -d '.git' ]; then
         debug "found git repository in $(pwd)"
-    else 
+    else
         fail "no git repository found to push"
     fi
+
+    git checkout $WERCKER_GIT_BRANCH
 else
     # If there is a git repository, remove it because
     # we want to create a new git repository to push
@@ -144,7 +145,7 @@ else
             done < <(find "$WERCKER_HEROKU_DEPLOY_SOURCE_DIR" -type f -name ".git" -print0)
         fi
     fi
-    
+
     # Create git repository and add all files.
     # This repository will get pushed to heroku.
     git init
