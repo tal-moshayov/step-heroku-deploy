@@ -176,13 +176,14 @@ then
     fi
 fi
 
-if [ -n "$WERCKER_HEROKU_DEPLOY_RUN" ]
-then
-    run_command="$WERCKER_HEROKU_DEPLOY_RUN"
+if [ $exit_code_push -eq 0 ]; then
+    if [ -n "$WERCKER_HEROKU_DEPLOY_RUN" ]; then
+        run_command="$WERCKER_HEROKU_DEPLOY_RUN"
 
-    debug "starting heroku run $run_command"
-    heroku run "$run_command" --app $HEROKU_APP_NAME
-    exit_code_run=$?
+        debug "starting heroku run $run_command"
+        heroku run "$run_command" --app $HEROKU_APP_NAME
+        exit_code_run=$?
+    fi
 fi
 
 # Cleanup ssh key
