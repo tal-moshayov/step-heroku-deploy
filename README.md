@@ -26,7 +26,10 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-- Add `keep-repository` parameter.
+- Major refactor:
+- Only install toolbelt if needed (currently only required for running a command).
+- Fix security issue, where the host key was ignored.
+- step.sh now uses functions.
 
 # Options
 
@@ -53,6 +56,13 @@ deploy:
 The MIT License (MIT)
 
 # Changelog
+
+## 2.0.0
+
+- Major refactor:
+- Only install toolbelt if needed (currently only required for running a command).
+- Fix security issue, where the host key was ignored.
+- step.sh now uses functions.
 
 ## 1.0.14
 
