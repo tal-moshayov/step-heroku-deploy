@@ -148,8 +148,6 @@ execute_heroku_command() {
     local app_name="$1";
     local command="$2";
 
-    # install_toolbelt;
-
     debug "starting heroku run $command";
     heroku run "$command" --app $app_name;
     local exit_code_run=$?;
