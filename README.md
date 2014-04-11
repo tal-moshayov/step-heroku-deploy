@@ -58,6 +58,9 @@ The MIT License (MIT)
 
 # Changelog
 
+## 2.0.2
+- fix: allow step to be run multiple times in a single deploy
+
 ## 2.0.1
 - add install_toolbelt option
 
