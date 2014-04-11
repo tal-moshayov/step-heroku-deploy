@@ -148,7 +148,7 @@ execute_heroku_command() {
     local app_name="$1";
     local command="$2";
 
-    install_toolbelt;
+    # install_toolbelt;
 
     debug "starting heroku run $command";
     heroku run "$command" --app $app_name;
@@ -296,6 +296,13 @@ if [ $exit_code_push -ne 0 ]; then
         exit_code_push=$?
         set -e;
     fi
+fi
+
+
+if [ "$WERCKER_HEROKU_INSTALL_TOOLBELT" == "true" -o -n "$WERCKER_HEROKU_DEPLOY_RUN" ]; then
+    set +e;
+    install_toolbelt;
+    set -e;
 fi
 
 # Run a command, if the push succeeded and the user supplied a run command
