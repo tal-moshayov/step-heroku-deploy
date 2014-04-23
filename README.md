@@ -26,10 +26,9 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-- Major refactor:
-- Only install toolbelt if needed (currently only required for running a command).
-- Fix security issue, where the host key was ignored.
-- step.sh now uses functions.
+- Check if API key is still valid.
+- Check if app exists on Heroku.
+- Suppress output of curl.
 
 # Options
 
@@ -58,10 +57,18 @@ The MIT License (MIT)
 
 # Changelog
 
+## 2.1.0
+
+- Check if API key is still valid.
+- Check if app exists on Heroku.
+- Suppress output of curl.
+
 ## 2.0.2
+
 - fix: allow step to be run multiple times in a single deploy
 
 ## 2.0.1
+
 - add install_toolbelt option
 
 ## 2.0.0
@@ -69,7 +76,7 @@ The MIT License (MIT)
 - Major refactor:
 - Only install toolbelt if needed (currently only required for running a command).
 - Fix security issue, where the host key was ignored.
-- step.sh now uses functions.
+- run.sh now uses functions.
 
 ## 1.0.14
 
