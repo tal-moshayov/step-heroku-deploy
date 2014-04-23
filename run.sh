@@ -245,7 +245,7 @@ test_authentication() {
     set -e;
 
     if [ $exit_code_authentication_test -ne 0 ]; then
-        fail 'Unable to retrieve account information, please update your API key changed';
+        fail 'Unable to retrieve account information, please update your Heroku API key';
     fi
 
     set +e;
@@ -254,7 +254,7 @@ test_authentication() {
     set -e;
 
     if [ $exit_code_app_test -ne 0 ]; then
-        fail 'Unable to retrieve application information, please check if the application still exists';
+        fail 'Unable to retrieve application information, please check if the Heroku application still exists';
     fi
 }
 
