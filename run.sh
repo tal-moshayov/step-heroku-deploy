@@ -166,7 +166,7 @@ add_ssh_key() {
     curl -n -X POST https://api.heroku.com/account/keys \
         -H "Accept: application/vnd.heroku+json; version=3" \
         -H "Content-Type: application/json" \
-        -d "{\"public_key\":\"$public_key\"";
+        -d "{\"public_key\":\"$public_key\"" > /dev/null 2>&1;
 }
 
 calculate_fingerprint() {
@@ -183,7 +183,7 @@ remove_ssh_key() {
     debug "Removing ssh key from Heroku account (fingerprint: $fingerprint)"
 
      curl -n -X DELETE https://api.heroku.com/account/keys/$fingerprint \
-        -H "Accept: application/vnd.heroku+json; version=3";
+        -H "Accept: application/vnd.heroku+json; version=3" > /dev/null 2>&1;
 }
 
 use_current_git_directory() {
@@ -240,7 +240,9 @@ test_authentication() {
     local app_name="$1"
 
     set +e;
-    curl -n --fail -H "Accept: application/json" https://api.heroku.com/account
+    curl -n --fail \
+        -H "Accept: application/vnd.heroku+json; version=3" \
+        https://api.heroku.com/account > /dev/null 2>&1;
     local exit_code_authentication_test=$?;
     set -e;
 
@@ -249,7 +251,9 @@ test_authentication() {
     fi
 
     set +e;
-    curl -n --fail -H "Accept: application/json" https://api.heroku.com/apps/$app_name
+    curl -n --fail \
+        -H "Accept: application/vnd.heroku+json; version=3" \
+        https://api.heroku.com/apps/$app_name > /dev/null 2>&1;
     local exit_code_app_test=$?
     set -e;
 
