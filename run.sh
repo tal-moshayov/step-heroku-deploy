@@ -240,7 +240,7 @@ test_authentication() {
     local app_name="$1"
 
     set +e;
-    curl --fail -H "Accept: application/json" https://api.heroku.com/account
+    curl -n --fail -H "Accept: application/json" https://api.heroku.com/account
     local exit_code_authentication_test=$?;
     set -e;
 
@@ -249,7 +249,7 @@ test_authentication() {
     fi
 
     set +e;
-    curl --fail -H "Accept: application/json" https://api.heroku.com/apps/$app_name
+    curl -n --fail -H "Accept: application/json" https://api.heroku.com/apps/$app_name
     local exit_code_app_test=$?
     set -e;
 
