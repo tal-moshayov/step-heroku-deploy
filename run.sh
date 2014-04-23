@@ -239,7 +239,23 @@ use_new_git_repository() {
 test_authentication() {
     local app_name="$1"
 
-    curl -H "Accept: application/json" https://api.heroku.com/apps/$app_name
+    set +e;
+    curl --fail -H "Accept: application/json" https://api.heroku.com/account
+    local exit_code_authentication_test=$?;
+    set -e;
+
+    if [ $exit_code_authentication_test -ne 0 ]; then
+        fail 'Unable to retrieve account information, please update your API key changed';
+    fi
+
+    set +e;
+    curl --fail -H "Accept: application/json" https://api.heroku.com/apps/$app_name
+    local exit_code_app_test=$?
+    set -e;
+
+    if [ $exit_code_app_test -ne 0 ]; then
+        fail 'Unable to retrieve application information, please check if the application still exists';
+    fi
 }
 
 # === Main flow starts here ===
