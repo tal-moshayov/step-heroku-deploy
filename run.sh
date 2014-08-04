@@ -201,7 +201,6 @@ use_current_git_directory() {
 
     cd $working_directory
     git checkout $branch
-    cd $current_working_directory
 }
 
 use_new_git_repository() {
@@ -233,7 +232,6 @@ use_new_git_repository() {
     git init
     git add .
     git commit -m 'wercker deploy'
-    cd $current_working_directory
 }
 
 test_authentication() {
