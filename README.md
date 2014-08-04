@@ -26,9 +26,8 @@ In the above example the `MY_DEPLOY_KEY` should match the environment variable n
 
 # What's new
 
-- Check if API key is still valid.
-- Check if app exists on Heroku.
-- Suppress output of curl.
+- Remove some changing of directories
+- Mark `source_dir` as deprecated. In a future version this will be replaced with `cwd`, currently they however are not compatible.
 
 # Options
 
@@ -49,13 +48,18 @@ deploy:
 
 # Special thanks
 
-[https://app.wercker.com/#wernerb](wernerb) for fixing submodule support and allowing the repository to be reused.
+- [wernerb](https://app.wercker.com/#wernerb) for fixing submodule support and allowing the repository to be reused.
 
 # License
 
 The MIT License (MIT)
 
 # Changelog
+
+## 2.2.0
+
+- Remove some changing of directories
+- Mark `source_dir` as deprecated. In a future version this will be replaced with `cwd`, currently they however are not compatible.
 
 ## 2.1.0
 
