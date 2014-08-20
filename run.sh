@@ -29,6 +29,7 @@ init_wercker_environment_variables() {
         export WERCKER_HEROKU_DEPLOY_SOURCE_DIR="$WERCKER_ROOT";
         debug "option source_dir not set. Will deploy directory $WERCKER_HEROKU_DEPLOY_SOURCE_DIR";
     else
+        warn "Use of source_dir is deprecated. Please make sure that you fix your Heroku deploy version on a major version."
         debug "option source_dir found. Will deploy directory $WERCKER_HEROKU_DEPLOY_SOURCE_DIR";
     fi
 }
@@ -199,7 +200,6 @@ use_current_git_directory() {
         fail "no git repository found to push";
     fi
 
-    cd $working_directory
     git checkout $branch
 }
 
@@ -228,7 +228,6 @@ use_new_git_repository() {
 
     # Create git repository and add all files.
     # This repository will get pushed to heroku.
-    cd $working_directory
     git init
     git add .
     git commit -m 'wercker deploy'
@@ -274,7 +273,7 @@ init_ssh;
 init_git "$WERCKER_HEROKU_DEPLOY_USER" "$WERCKER_HEROKU_DEPLOY_USER";
 init_gitssh "$gitssh_path" "$ssh_key_path";
 
-# cd $WERCKER_HEROKU_DEPLOY_SOURCE_DIR || fail "could not change directory to source_dir \"$WERCKER_HEROKU_DEPLOY_SOURCE_DIR\""
+cd $WERCKER_HEROKU_DEPLOY_SOURCE_DIR || fail "could not change directory to source_dir \"$WERCKER_HEROKU_DEPLOY_SOURCE_DIR\""
 
 # Test credentials
 test_authentication "$WERCKER_HEROKU_DEPLOY_APP_NAME";
