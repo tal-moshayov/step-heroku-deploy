@@ -138,7 +138,7 @@ push_code() {
     local app_name="$1";
 
     debug "starting heroku deployment with git push";
-    git push -f git@git.heroku.com:$app_name.git HEAD:master;
+    git push -f git@heroku.com:$app_name.git HEAD:master;
     local exit_code_push=$?;
 
     debug "git pushed exited with $exit_code_push";

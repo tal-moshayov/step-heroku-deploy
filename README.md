@@ -56,6 +56,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 2.2.1
+
+- fixed: ssh: connect to host git.heroku.com port 22: Connection timed out
+
 ## 2.2.0
 
 - Remove some changing of directories
