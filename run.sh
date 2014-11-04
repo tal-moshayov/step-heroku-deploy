@@ -260,6 +260,12 @@ test_authentication() {
 }
 
 # === Main flow starts here ===
+
+if [ -z "$WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP"  ]; then
+    echo "Skipping Heroku Deploy step"
+    return 0;
+fi
+
 ssh_key_path="$(mktemp -d)/id_rsa";
 gitssh_path="$(mktemp)";
 error_suffix='Please add this option to the wercker.yml or add a heroku deployment target on the website which will set these options for you.';
