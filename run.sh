@@ -264,6 +264,8 @@ test_authentication() {
 if [ -n "$WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP"  ]; then
     echo "Skipping Heroku Deploy step (value=$WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP)"
     return 0;
+else
+    echo "not skipping ($WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP) ($HEROKU_DEPLOY_SKIP)"
 fi
 
 ssh_key_path="$(mktemp -d)/id_rsa";
