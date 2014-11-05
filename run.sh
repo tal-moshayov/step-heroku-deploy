@@ -262,7 +262,7 @@ test_authentication() {
 # === Main flow starts here ===
 
 if [ -z "$WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP"  ]; then
-    echo "Skipping Heroku Deploy step"
+    echo "Skipping Heroku Deploy step (value=$WERCKER_HEROKU_DEPLOY_HEROKU_DEPLOY_SKIP)"
     return 0;
 fi
 
